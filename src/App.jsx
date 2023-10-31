@@ -6,12 +6,14 @@ import { getAllPokemon } from './components/pokemon'
 
 function App() {
  const jsonURL =  'https://pokeapi.co/api/v2/pokemon'
+ const [loadingStr, setStr] = useState('ロード中')
 
  useEffect(() => {
   const fetchPokemonData = async () => {
     // すべてのポケモンデータ
-    let res = await getAllPokemon(jsonURL);
+    let res = await getAllPokemon(jsonURL)
     console.log(res)
+    setStr('ポケモン情報を取得しました')
   }
   fetchPokemonData()
  },[])
@@ -19,7 +21,7 @@ function App() {
 
   return (
     <>
-    <h1 className='text-red-500 text-7xl text-center'>Hello,World</h1>
+      <h1>{ loadingStr }</h1>
     </>
   )
 }
