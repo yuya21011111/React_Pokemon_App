@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { getAllPokemon,getPokemon } from './components/pokemon'
+import Card from './components/Card'
 
 function App() {
  const jsonURL =  'https://pokeapi.co/api/v2/pokemon'
@@ -36,6 +37,11 @@ console.log(pokemonsData)
   return (
     <>
       <h1 className='text-center text-yellow-400 text-4xl'>{ loading }</h1>
+      <div className='pokemonCardContainer'>
+       {pokemonsData.map((pokemon, i) => {
+        return <Card key={i} pokemon={pokemon} />
+       })}
+      </div>
     </>
   )
 }
