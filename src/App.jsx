@@ -4,11 +4,13 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { getAllPokemon,getPokemon } from './components/pokemon'
 import Card from './components/Card'
+import Navbar from './components/Navbar'
 
 function App() {
  const jsonURL =  'https://pokeapi.co/api/v2/pokemon'
  const [loading, setLoading] = useState('ロード中...')
  const [pokemonsData, setPokemonsData] = useState([])
+ const [nextURL, setNextURL] = useState('')
 
  useEffect(() => {
   const fetchPokemonData = async () => {
@@ -16,6 +18,7 @@ function App() {
     let res = await getAllPokemon(jsonURL);
     // 詳細データの所得
    allPokemon(res.results)
+   setNextURL(res.next)
     setLoading('ポケモンデータ取得完了')
   }
   setTimeout(() => {
@@ -32,15 +35,33 @@ function App() {
   )
   setPokemonsData(pokemonData)
  }
-console.log(pokemonsData)
+// console.log(pokemonsData)
+
+const handlePrevPage = () => {
+
+}
+
+const handleNextPage = async () => {
+  let data = await getAllPokemon(nextURL)
+  // console.log(data.results)
+  setNextURL(data.next)
+  await allPokemon(data.results)
+}
 
   return (
     <>
-      <h1 className='text-center text-yellow-400 text-4xl'>{ loading }</h1>
-      <div className='grid grid-cols-3 text-center bg-green-100 mt-4'>
+    <Navbar />
+      <h1 className='text-center text-yellow-400 text-sm'>{ loading }</h1>
+      <div className='grid grid-cols-3 text-center bg-green-200'>
        {pokemonsData.map((pokemon, i) => {
         return <Card key={i} pokemon={pokemon} />
        })}
+      </div>
+      <div className="mb-2 bg-green-100">
+        <div className='flex justify-center'>
+        <button className='mr-4 rounded-full bg-red-500 text-lg text-white' onClick={handlePrevPage}>前へ</button>
+        <button className='mr-4 rounded-full bg-blue-500 text-lg text-white' onClick={handleNextPage}>次へ</button>
+        </div>
       </div>
     </>
   )

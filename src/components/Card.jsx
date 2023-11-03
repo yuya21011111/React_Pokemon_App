@@ -1,7 +1,7 @@
 const Card = ({ pokemon }) => {
     return  (
         <>
-          <div className="mb-4 mt-4 mx-auto text-black bg-gray-100 font-bold border  shadow-2xl">
+          <div className="mb-4 mt-4 mx-auto text-black bg-gray-100 font-bold border shadow-2xl">
             <div className="flex justify-center">
               <img src={pokemon.sprites.front_default} alt="" className="transtion duration-1000 transform hover:scale-150 w-60" />
             </div>
