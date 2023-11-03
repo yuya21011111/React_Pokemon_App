@@ -37,7 +37,7 @@ console.log(pokemonsData)
   return (
     <>
       <h1 className='text-center text-yellow-400 text-4xl'>{ loading }</h1>
-      <div className='pokemonCardContainer'>
+      <div className='grid grid-cols-3 text-center bg-green-100 mt-4'>
        {pokemonsData.map((pokemon, i) => {
         return <Card key={i} pokemon={pokemon} />
        })}
