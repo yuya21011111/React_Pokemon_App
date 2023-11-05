@@ -11,7 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
-/components/Card.jsx
+src/components/Card.jsx
 
 # Editor directories and files
 .vscode/*
